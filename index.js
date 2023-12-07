@@ -49,3 +49,30 @@ const getLogoInfo = () => {
         },
     ]);
 }
+
+// Initialize the app
+function init() {
+    getLogoInfo() // Inquirer prompt
+        .then((answers) => { // answers is the response given after running the prompt
+            // Create Shape Object and Write to File 
+            switch(answers.shape){
+                case 'Circle':
+                    let circle = new Circle(answers.text, answers.colorText, answers.colorShape);
+                    createLogo(circle); 
+                    break;
+                case 'Square':
+                    let square = new Square(answers.text, answers.colorText, answers.colorShape);
+                    createLogo(square); 
+                    break;
+                case 'Triangle':
+                    let triangle = new Triangle(answers.text, answers.colorText, answers.colorShape);
+                    createLogo(triangle); 
+                    break;
+                default:
+                    console.log("Something went wrong, please try again.");
+            }
+        });
+}
+
+// Function call to initialize app
+init();
