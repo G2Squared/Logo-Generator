@@ -4,12 +4,15 @@ const Circle = require('./lib/circle.js');
 const Square = require('./lib/square.js');
 const Triangle = require('./lib/triangle.js');
 
+// Importing Inquirer and max length input prompt
 const inquirer = require('inquirer'); 
 const maxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
 inquirer.registerPrompt('maxlengthInput', maxLengthInputPrompt);
 
+// Importing File System module
 const fs = require('fs'); 
 
+// Function to generate SVG code for the logo
 function generateSvg(shape){
     return `<svg height="300" width="400" version="1.1" xmlns="http://www.w3.org/2000/svg">
     ${shape.render()}
@@ -17,12 +20,13 @@ function generateSvg(shape){
     </svg>`
 }
 
-
+// Function to create the logo and write to a file
 function createLogo(shape){
     fs.writeFile('./examples/logo.svg' , generateSvg(shape),
     (err) => err ? console.error(err) : console.log('Generated "logo.svg" Sucessfully! Please find this in the "examples" folder.'));
 }
 
+// Function to get logo information through Inquirer prompts
 const getLogoInfo = () => {
     return inquirer.prompt ([
         {
